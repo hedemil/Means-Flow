@@ -1,0 +1,13 @@
+# MeanFlow project requirements
+jax[cuda12]
+flax==0.10.1
+optax==0.2.2
+orbax-checkpoint==0.5.23
+tensorflow>=2.16.1
+tensorflow-datasets>=4.9.6
+ml-collections>=0.1.1
+numpy
+absl-py
+tqdm
+pyyaml
+matplotlib

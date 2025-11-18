@@ -1,0 +1,35 @@
+data:
+  name: cifar10
+  batch_size: 64  # Increase if you have memory
+  num_workers: 8
+  shuffle: true
+  cache: true
+  split_train: "train"  # Use full training set
+  split_eval: "test"
+
+model:
+  in_ch: 3
+  latent_hw: 32
+  ch: 128               # ← INCREASE from 64 to 128
+  ch_mult: [1, 2, 3, 4] # ← ADD MORE LEVELS: 4 instead of 3
+  num_res_blocks: 3     # ← INCREASE from 2 to 3
+  num_classes: 10
+
+time:
+  schedule: linear
+  sampler: uniform_pair
+
+train:
+  epochs: 100  # More epochs for larger model
+  lr: 3.0e-4
+  wd: 0.0
+  ema: 0.9999
+  grad_clip: 1.0
+  cfg_drop: 0.1
+  seed: 0
+
+eval:
+  nfe: 1
+  cfg_scale: 2.0
+  log_every: 100
+  ckpt_every: 5

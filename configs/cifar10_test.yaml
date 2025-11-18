@@ -1,0 +1,27 @@
+data:
+  batch_size: 32  # Much smaller for quick testing
+  split_train: "train[:10000]"  # Only use 10000 images
+  shuffle: true
+  cache: false  # Don't cache for quick testing
+
+model:
+  in_ch: 3
+  latent_hw: 32         # Image size (CIFAR-10 is 32x32)
+  ch: 32                # Reduced base channels for fast testing
+  ch_mult: [1, 2, 4]    # Channel multipliers: [32, 64, 128]
+  num_res_blocks: 2     # Residual blocks per level
+  num_classes: 10
+
+train:
+  lr: 0.0001
+  wd: 0.0001
+  ema: 0.9999
+  grad_clip: 1.0
+  cfg_drop: 0.1
+  epochs: 10  # Just 10 epochs for testing
+  seed: 42
+  num_samples: 10000
+
+eval:
+  log_every: 10  # Log more frequently
+  ckpt_every: 1

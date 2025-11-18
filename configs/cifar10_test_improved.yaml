@@ -1,0 +1,27 @@
+data:
+  batch_size: 64
+  split_train: "train[:5000]"  # Start with 5k images - faster iteration
+  shuffle: true
+  cache: true
+
+model:
+  in_ch: 3
+  latent_hw: 32
+  ch: 64                # Good balance for local GPU
+  ch_mult: [1, 2, 4]    # [64, 128, 256] channels
+  num_res_blocks: 2
+  num_classes: 10
+
+train:
+  lr: 0.0005            # Higher LR for faster learning
+  wd: 0.0001
+  ema: 0.9999
+  grad_clip: 1.0
+  cfg_drop: 0.1
+  epochs: 50            # More epochs to see real improvement
+  seed: 42
+  filter_classes: [0, 1]
+
+eval:
+  log_every: 20
+  ckpt_every: 5

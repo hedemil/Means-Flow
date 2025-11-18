@@ -1,0 +1,27 @@
+data:
+  batch_size: 32
+  split_train: "train[:50000]"  # Full dataset but will filter to few classes
+  shuffle: true
+  cache: true
+
+model:
+  in_ch: 3
+  latent_hw: 32
+  ch: 64
+  ch_mult: [1, 2, 4]
+  num_res_blocks: 2
+  num_classes: 10  # Still 10 for compatibility, but we'll only use 2-3
+
+train:
+  lr: 0.0003           # Slightly lower for stability
+  wd: 0.0001
+  ema: 0.9999
+  grad_clip: 1.0
+  cfg_drop: 0.1
+  epochs: 50          # Train for much longer
+  seed: 42
+  filter_classes: [0, 1]  # Only train on airplanes and automobiles
+
+eval:
+  log_every: 20
+  ckpt_every: 10

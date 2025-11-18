@@ -1,0 +1,27 @@
+data:
+  batch_size: 8      # Very small batch
+  split_train: "train[:500]"  # Only 500 images for quick overfitting test
+  shuffle: true
+  cache: true
+
+model:
+  in_ch: 3
+  latent_hw: 32
+  ch: 32              # Minimal channels
+  ch_mult: [1, 2]     # Only 2 levels (remove third level)
+  num_res_blocks: 1   # Minimal residual blocks
+  num_classes: 10
+
+train:
+  lr: 0.001           # Higher learning rate for faster learning
+  wd: 0.0             # No weight decay
+  ema: 0.999          # Faster EMA
+  grad_clip: 1.0
+  cfg_drop: 0.1
+  epochs: 50          # More epochs on small dataset
+  seed: 42
+
+eval:
+  log_every: 10
+  ckpt_every: 10
+  cfg_scale: 2.0
